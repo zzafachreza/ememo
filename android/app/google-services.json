@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "116289088557",
+    "project_id": "e-memo-12095",
+    "storage_bucket": "e-memo-12095.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:116289088557:android:1b91cd2f9461e5f61cdca4",
+        "android_client_info": {
+          "package_name": "com.ememo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "116289088557-3kb27sk3df4qrd1d7hgke2b6rb94pqcm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCTVS4XmraqKtRKJ0BHOt8nW2TLooCGPgw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "116289088557-3kb27sk3df4qrd1d7hgke2b6rb94pqcm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
