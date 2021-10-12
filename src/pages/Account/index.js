@@ -12,6 +12,7 @@ import {
 import {storeData, getData} from '../../utils/localStorage';
 import {colors} from '../../utils/colors';
 import {fonts} from '../../utils/fonts';
+import {MyButton, MyGap} from '../../components';
 
 export default function Account({navigation}) {
   const [user, setUser] = useState({});
@@ -138,6 +139,13 @@ export default function Account({navigation}) {
               {user.alamat}
             </Text>
           </View>
+          <MyGap jarak={50} />
+          <MyButton
+            title="LOGOUT"
+            onPress={handleSave}
+            warna={colors.secondary}
+            Icons="log-out-outline"
+          />
         </View>
       </View>
     </ImageBackground>

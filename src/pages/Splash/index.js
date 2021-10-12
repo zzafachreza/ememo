@@ -68,14 +68,6 @@ export default function Splash({navigation}) {
           }}
         />
       </View>
-      <Text
-        style={{
-          margin: 10,
-          fontFamily: fonts.secondary[600],
-          fontSize: windowWidth / 20,
-        }}>
-        E - Memo
-      </Text>
     </SafeAreaView>
   );
 }

@@ -34,6 +34,10 @@ import {
   EditProfile,
   Wa,
   Infaq,
+  Pembuat,
+  Pemeriksa,
+  Penyetuju,
+  Ttd,
 } from '../pages';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {BottomNavigator} from '../components';
@@ -46,8 +50,8 @@ const MainApp = () => {
   return (
     <Tab.Navigator tabBar={props => <BottomNavigator {...props} />}>
       <Tab.Screen name="Home" component={Home} />
-      <Tab.Screen name="Wa" component={Wa} />
-      <Tab.Screen name="Ifaq" component={Infaq} />
+      {/* <Tab.Screen name="Wa" component={Wa} /> */}
+      {/* <Tab.Screen name="Ifaq" component={Infaq} /> */}
       <Tab.Screen name="Account" component={Account} />
     </Tab.Navigator>
   );
@@ -80,8 +84,32 @@ export default function Router() {
       />
 
       <Stack.Screen
-        name="Infaq"
-        component={Infaq}
+        name="Pembuat"
+        component={Pembuat}
+        options={{
+          headerShown: false,
+        }}
+      />
+
+      <Stack.Screen
+        name="Pemeriksa"
+        component={Pemeriksa}
+        options={{
+          headerShown: false,
+        }}
+      />
+
+      <Stack.Screen
+        name="Ttd"
+        component={Ttd}
+        options={{
+          headerShown: false,
+        }}
+      />
+
+      <Stack.Screen
+        name="Penyetuju"
+        component={Penyetuju}
         options={{
           headerShown: false,
         }}

@@ -25,12 +25,19 @@ import EditProfile from './EditProfile';
 
 import Wa from './Wa';
 
-import Infaq from './Infaq';
+import Pembuat from './Pembuat';
+import Pemeriksa from './Pemeriksa';
+import Penyetuju from './Penyetuju';
+
+import Ttd from './Ttd';
 
 export {
   Splash,
   Wa,
-  Infaq,
+  Ttd,
+  Pembuat,
+  Pemeriksa,
+  Penyetuju,
   GetStarted,
   Register,
   Login,

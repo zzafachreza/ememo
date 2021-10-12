@@ -23,6 +23,7 @@ import axios from 'axios';
 import Drawer from 'react-native-drawer';
 import {MyButton} from '../../components';
 import MyCarouser2 from '../../components/MyCarouser2';
+import MyCarouser from '../../components/MyCarouser';
 
 export default function Home({navigation}) {
   const _drawer = useRef();
@@ -58,6 +59,7 @@ export default function Home({navigation}) {
           padding: 6,
           borderRadius: 20,
           width: windowWidth / 5,
+          height: 80,
           elevation: 5,
         }}>
         <View>
@@ -100,290 +102,154 @@ export default function Home({navigation}) {
   };
 
   return (
-    <Drawer
-      tweenHandler={ratio => ({
-        main: {opacity: (2 - ratio) / 2},
-      })}
-      tapToClose={true}
-      openDrawerOffset={0.2} // 20% gap on the right side of drawer
-      panCloseMask={0.2}
-      closedDrawerOffset={-3}
-      ref={_drawer}
-      content={<MyDrawer closeDrawer={() => _drawer.current.close()} />}>
-      <ImageBackground
-        style={{
-          flex: 1,
-          backgroundColor: colors.primary,
-        }}>
-        <ScrollView>
-          <View
-            style={{
-              height: 100,
-              padding: 10,
-              backgroundColor: colors.primary,
-              flexDirection: 'row',
-            }}>
-            <View style={{flex: 1, paddingTop: 15, flexDirection: 'row'}}>
-              <View>
-                <View
-                  style={{
-                    width: 60,
-                    // backgroundColor: colors.border,
-                    borderWidth: 2,
-                    borderColor: colors.primary,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    height: 60,
-                    borderRadius: 60,
-                    marginBottom: 10,
-                    overflow: 'hidden',
-                  }}>
-                  <Image
-                    source={{
-                      uri:
-                        user.foto == ''
-                          ? 'https://zavalabs.com/nogambar.jpg'
-                          : user.foto,
-                    }}
-                    style={{width: 60, height: 60}}
-                  />
-                </View>
-              </View>
-              <View style={{flex: 1, paddingLeft: 10}}>
-                <Text
-                  style={{
-                    fontSize: windowWidth / 25,
-                    color: colors.white,
-                    fontFamily: fonts.secondary[600],
-                  }}>
-                  {user.nama_lengkap}
-                </Text>
-                <Text
-                  style={{
-                    fontSize: windowWidth / 25,
-                    color: colors.white,
-                    fontFamily: fonts.secondary[400],
-                  }}>
-                  NIS 1283718683192
-                </Text>
-              </View>
-            </View>
-
-            <TouchableOpacity
-              onPress={() => _drawer.current.open()}
-              style={{
-                padding: 20,
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}>
-              <Icon
-                type="ionicon"
-                name="menu-outline"
-                size={35}
-                color={colors.white}
-              />
-            </TouchableOpacity>
-          </View>
-
-          {/* berita */}
-          <View
-            style={{
-              height: windowHeight / 5,
-              padding: 20,
-              marginHorizontal: 10,
-              borderRadius: 20,
-              backgroundColor: colors.white,
-            }}>
-            <Text
-              style={{
-                flex: 1,
-                fontSize: windowWidth / 30,
-                color: colors.black,
-                fontFamily: fonts.secondary[600],
-              }}>
-              Pengumuman Terbaru 29 Agustus 2021
-            </Text>
-
-            <View
-              style={{
-                flexDirection: 'row',
-                borderTopWidth: 1,
-                paddingTop: 10,
-              }}>
-              <TouchableOpacity
+    <ImageBackground
+      style={{
+        flex: 1,
+        backgroundColor: colors.primary,
+      }}>
+      <ScrollView>
+        <View
+          style={{
+            height: 80,
+            padding: 10,
+            backgroundColor: colors.primary,
+            flexDirection: 'row',
+          }}>
+          <View style={{flex: 1, paddingTop: 15, flexDirection: 'row'}}>
+            <View style={{flex: 1, paddingLeft: 10}}>
+              <Text
                 style={{
-                  flex: 1,
+                  fontSize: windowWidth / 25,
+                  color: colors.white,
+                  fontFamily: fonts.secondary[400],
                 }}>
-                <Text
-                  style={{
-                    fontSize: windowWidth / 30,
-                    color: colors.primary,
-                    fontFamily: fonts.secondary[800],
-                  }}>
-                  Baca Selengkapnya
-                </Text>
-              </TouchableOpacity>
-              <Icon
-                type="ionicon"
-                name="chevron-forward-circle"
-                size={25}
-                color={colors.primary}
-              />
+                Selamat Datang,
+              </Text>
+              <Text
+                style={{
+                  fontSize: windowWidth / 25,
+                  color: colors.white,
+                  fontFamily: fonts.secondary[600],
+                }}>
+                {user.nama_lengkap}
+              </Text>
             </View>
           </View>
-          {/* berita */}
 
-          {/* menu */}
-          <View style={{padding: 20}}>
-            <View
-              style={{
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                marginTop: 15,
-              }}>
-              <DataKategori
-                onPress={() => navigation.navigate('Daftar')}
-                icon="bookmarks"
-                nama="Nilai Akademik"
-              />
-              <DataKategori
-                onPress={() => navigation.navigate('Info')}
-                icon="information-circle"
-                nama="Nilai Tahfidz"
-              />
-              <DataKategori
-                onPress={() => navigation.navigate('Tahsin')}
-                icon="logo-youtube"
-                nama="Kehadiran"
-              />
-              <DataKategori
-                onPress={() => navigation.navigate('Beasiswa')}
-                icon="grid"
-                nama="Data Pendidikan"
-              />
-            </View>
-            <View
-              style={{
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                marginTop: 15,
-              }}>
-              <DataKategori
-                onPress={() => navigation.navigate('Zakat')}
-                icon="file-tray-stacked"
-                nama="Daftar Tugas"
-              />
-              <DataKategori
-                onPress={() => navigation.navigate('Waqaf')}
-                icon="card"
-                nama="Riwayat Pembayaran"
-              />
-              <DataKategori
-                onPress={() => navigation.navigate('Buku')}
-                icon="wallet"
-                nama="Waqaf Pesantren"
-              />
-              <DataKategori
-                onPress={() => navigation.navigate('Gallery')}
-                icon="people"
-                nama="Bantu Santri Yatim/Dhuafa"
-              />
-            </View>
-          </View>
-          {/* menu */}
-
-          {/* Bayar */}
           <View
             style={{
-              height: windowHeight / 5,
-              padding: 20,
-              margin: 10,
-              marginBottom: 20,
-              borderRadius: 20,
-              backgroundColor: colors.white,
+              width: 60,
+              // backgroundColor: colors.border,
+              borderWidth: 2,
+              borderColor: colors.primary,
+              justifyContent: 'center',
+              alignItems: 'center',
+              height: 60,
+              borderRadius: 60,
+              marginBottom: 10,
+              overflow: 'hidden',
             }}>
-            <Text
-              style={{
-                fontSize: windowWidth / 30,
-                color: colors.black,
-                fontFamily: fonts.secondary[600],
-              }}>
-              Total Kewajiban Belum Bayar
-            </Text>
+            <Image
+              source={require('../../assets/logo.png')}
+              style={{width: 60, height: 60}}
+            />
+          </View>
+        </View>
+
+        <View
+          style={{
+            paddingTop: 20,
+            paddingHorizontal: 10,
+            backgroundColor: colors.white,
+            paddingBottom: 20,
+          }}>
+          <TouchableNativeFeedback
+            onPress={() => navigation.navigate('Search')}>
             <View
               style={{
                 flex: 1,
+                paddingLeft: 20,
+                borderWidth: 1,
+                height: 45,
+                borderRadius: 10,
+                borderColor: colors.primary,
+                color: colors.primary,
                 flexDirection: 'row',
+                fontSize: 18,
                 justifyContent: 'center',
               }}>
-              <TouchableOpacity
+              <View
                 style={{
-                  flex: 1,
-                }}>
-                <Text
-                  style={{
-                    fontSize: windowWidth / 10,
-                    color: colors.black,
-                    fontFamily: fonts.secondary[600],
-                  }}>
-                  15.123.000
-                </Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={{
+                  flex: 2,
                   justifyContent: 'center',
-                  marginVertical: 10,
-                  paddingHorizontal: 15,
-                  borderRadius: 30,
-                  backgroundColor: colors.primary,
                 }}>
                 <Text
                   style={{
-                    fontSize: windowWidth / 32,
-                    color: colors.white,
-                    fontFamily: fonts.secondary[600],
+                    fontFamily: 'Montserrat-Light',
+                    fontSize: 18,
+                    color: colors.primary,
                   }}>
-                  Bayar Sekarang
+                  Pencarian..
                 </Text>
-              </TouchableOpacity>
-            </View>
-
-            <View
-              style={{
-                flexDirection: 'row',
-                borderTopWidth: 1,
-                paddingTop: 10,
-              }}>
-              <TouchableOpacity
+              </View>
+              <View
                 style={{
                   flex: 1,
+                  justifyContent: 'center',
+                  alignItems: 'flex-end',
+                  paddingRight: 20,
                 }}>
-                <Text
-                  style={{
-                    fontSize: windowWidth / 30,
-                    color: colors.primary,
-                    fontFamily: fonts.secondary[800],
-                  }}>
-                  Baca Selengkapnya
-                </Text>
-              </TouchableOpacity>
-              <Icon
-                type="ionicon"
-                name="chevron-forward-circle"
-                size={25}
-                color={colors.primary}
-              />
+                <Icon
+                  type="font-awesome"
+                  name="search"
+                  color={colors.primary}
+                  size={18}
+                />
+              </View>
             </View>
+          </TouchableNativeFeedback>
+        </View>
+
+        <MyCarouser />
+
+        {/* menu */}
+        <View style={{padding: 20}}>
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              marginTop: 15,
+            }}>
+            <DataKategori
+              onPress={() => navigation.navigate('Pembuat', user)}
+              icon="mail"
+              nama="Pembuat Surat"
+            />
+            <DataKategori
+              onPress={() => navigation.navigate('Info')}
+              icon="mail-open"
+              nama="Mengetahui"
+            />
+            <DataKategori
+              onPress={() => navigation.navigate('Tahsin')}
+              icon="checkmark-circle"
+              nama="Menyetujui"
+            />
+            <DataKategori
+              onPress={() => navigation.navigate('ListData')}
+              icon="folder"
+              nama="File Surat"
+            />
           </View>
-          {/* Bayar */}
+        </View>
+        {/* menu */}
 
-          {/* banner */}
+        {/* banner */}
 
-          <MyCarouser2 />
+        <MyCarouser2 />
 
-          {/* banner */}
-        </ScrollView>
-      </ImageBackground>
-    </Drawer>
+        {/* banner */}
+      </ScrollView>
+    </ImageBackground>
   );
 }

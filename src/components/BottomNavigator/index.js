@@ -62,8 +62,8 @@ export default function BottomNavigator({state, descriptors, navigation}) {
           iconName = 'wallet-outline';
           labeNew = 'Infak / Sedekah';
         } else if (label === 'Wa') {
-          iconName = 'logo-whatsapp';
-          labeNew = 'Chat WA';
+          iconName = 'camera-outline';
+          labeNew = 'Dokumentasi';
         }
 
         return (

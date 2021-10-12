@@ -34,7 +34,7 @@ export default function ListData({navigation}) {
       // console.log(res);
 
       axios
-        .post('https://zavalabs.com/mylaundry/api/transaksi.php', {
+        .post('https://zavalabs.com/ememo/api/transaksi.php', {
           id_member: res.id,
         })
         .then(res => {
@@ -51,7 +51,7 @@ export default function ListData({navigation}) {
         // console.log(res);
 
         axios
-          .post('https://zavalabs.com/mylaundry/api/transaksi.php', {
+          .post('https://zavalabs.com/ememo/api/transaksi.php', {
             id_member: res.id,
           })
           .then(res => {
@@ -97,14 +97,14 @@ export default function ListData({navigation}) {
                       fontFamily: fonts.secondary[400],
                       fontSize: 12,
                     }}>
-                    Nomor Transaksi - Nama Pelanggan :
+                    Nomor - Perihal :
                   </Text>
                   <Text
                     style={{
                       fontFamily: fonts.secondary[600],
                       fontSize: 20,
                     }}>
-                    {item.kode}
+                    {item.nomor}
                   </Text>
                   <Text
                     style={{
@@ -112,7 +112,7 @@ export default function ListData({navigation}) {
                       fontSize: 16,
                       color: colors.primary,
                     }}>
-                    {item.nama_pemesan}
+                    {item.pembuat_nama}
                   </Text>
                   <Text
                     style={{
@@ -139,73 +139,6 @@ export default function ListData({navigation}) {
                   </Text>
                 </View>
               </TouchableOpacity>
-
-              {item.status === 'SEDANG DIPROSES' && (
-                <View style={{flexDirection: 'row'}}>
-                  <Text
-                    style={{
-                      flex: 1,
-                      backgroundColor: '#DEDEDE',
-                      color: colors.black,
-                      padding: 10,
-                      fontFamily: fonts.secondary[600],
-                    }}>
-                    SEDANG DIPROSES
-                  </Text>
-                  <TouchableOpacity
-                    onPress={() => {
-                      axios
-                        .post(
-                          'https://zavalabs.com/mylaundry/api/transaksi_hapus.php',
-                          {
-                            id_member: item.id_member,
-                            kode: item.kode,
-                          },
-                        )
-                        .then(res => {
-                          axios
-                            .post(
-                              'https://zavalabs.com/mylaundry/api/transaksi.php',
-                              {
-                                id_member: item.id_member,
-                              },
-                            )
-                            .then(res => {
-                              console.log(res.data);
-                              setData(res.data);
-                            });
-                        });
-                    }}
-                    style={{
-                      padding: 10,
-                      backgroundColor: colors.danger,
-                    }}>
-                    <Text
-                      style={{
-                        fontFamily: fonts.secondary[600],
-                        color: colors.white,
-                      }}>
-                      Batalkan Transaksi
-                    </Text>
-                  </TouchableOpacity>
-                </View>
-              )}
-
-              {item.status === 'SELESAI' && (
-                <View style={{flexDirection: 'row'}}>
-                  <Text
-                    style={{
-                      flex: 1,
-                      backgroundColor: colors.primary,
-                      color: colors.white,
-                      padding: 10,
-                      fontFamily: fonts.secondary[600],
-                      textAlign: 'center',
-                    }}>
-                    SELESAI
-                  </Text>
-                </View>
-              )}
             </View>
           );
         })}

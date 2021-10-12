@@ -39,47 +39,46 @@ export default function Login({navigation}) {
     setLoading(true);
     console.log(data);
     setTimeout(() => {
-      axios
-        .post('https://zavalabs.com/bigetronesports/api/login.php', data)
-        .then(res => {
-          console.log(res.data);
-          setLoading(false);
-          if (res.data.kode == 50) {
-            showMessage({
-              type: 'danger',
-              message: res.data.msg,
+      axios.post('https://zavalabs.com/ememo/api/login.php', data).then(res => {
+        console.log(res.data);
+        setLoading(false);
+        if (res.data.kode == 50) {
+          showMessage({
+            type: 'danger',
+            message: res.data.msg,
+          });
+        } else {
+          storeData('user', res.data);
+          axios
+            .post('https://zavalabs.com/ememo/api/update_token.php', {
+              id_member: res.data.id,
+              token: token,
+            })
+            .then(res => {
+              console.log('update token', res);
             });
-          } else {
-            storeData('user', res.data);
-            axios
-              .post(
-                'https://zavalabs.com/bigetronesports/api/update_token.php',
-                {
-                  id_member: res.data.id,
-                  token: token,
-                },
-              )
-              .then(res => {
-                console.log('update token', res);
-              });
 
-            navigation.replace('MainApp');
-          }
-        });
+          navigation.replace('MainApp');
+        }
+      });
     }, 1200);
   };
   return (
     <ImageBackground style={styles.page}>
       <ScrollView
+        showsVerticalScrollIndicator={false}
         style={{
           flex: 1,
         }}>
         <View
           style={{
-            height: 250,
+            height: 220,
             flex: 1,
             justifyContent: 'center',
             alignItems: 'center',
+            backgroundColor: colors.primary,
+            padding: 10,
+            borderRadius: 10,
           }}>
           {/* <LottieView
             style={{flex: 1}}
@@ -87,27 +86,34 @@ export default function Login({navigation}) {
             autoPlay
             loop
           /> */}
-
           <Image
             source={require('../../assets/logo.png')}
             style={{
               resizeMode: 'contain',
-              width: 200,
-              height: 200,
-              aspectRatio: 1,
+              aspectRatio: 0.1,
             }}
           />
         </View>
         <View style={styles.page}>
+          <Text
+            style={{
+              fontFamily: fonts.secondary[400],
+              fontSize: windowWidth / 20,
+              color: colors.black,
+              textAlign: 'center',
+            }}>
+            Silahkan login untuk masuk ke aplikasi
+          </Text>
+
           <MyGap jarak={20} />
           <MyInput
-            label="Username"
-            iconname="person"
+            label="Email"
+            iconname="mail"
             value={data.nama_lengkap}
             onChangeText={value =>
               setData({
                 ...data,
-                email: value + '@gmail.com',
+                email: value,
               })
             }
           />
@@ -146,7 +152,7 @@ export default function Login({navigation}) {
 
 const styles = StyleSheet.create({
   page: {
-    // backgroundColor: 'white',
+    backgroundColor: 'white',
     flex: 1,
     padding: 10,
   },

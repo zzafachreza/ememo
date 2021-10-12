@@ -81,7 +81,7 @@ export default function GetStarted({navigation}) {
 
       <MyButton
         title="LOGIN"
-        warna={colors.tertiary}
+        warna={colors.primary}
         onPress={() => navigation.navigate('Login')}
       />
 
@@ -89,7 +89,7 @@ export default function GetStarted({navigation}) {
 
       <MyButton
         title="DAFTAR"
-        warna={colors.secondary}
+        warna={colors.tertiary}
         onPress={() => navigation.navigate('Register')}
       />
 

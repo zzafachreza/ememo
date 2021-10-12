@@ -30,44 +30,34 @@ export default function MyCarouser2() {
 
   const [data, setData] = useState([
     {
-      go: 'Barang3',
-      image: {
-        uri: 'https://www.pesantrenkhairunnas.sch.id/wp-content/uploads/2020/08/Sekolah-Tahfidz-Khairunnas.jpeg',
-      },
-      id: '1',
+      image: require('../../assets/satu.png'),
     },
     {
-      go: 'Barang3',
-      image: {
-        uri: 'https://www.pesantrenkhairunnas.sch.id/wp-content/uploads/2020/08/SD-Islam-Surabaya-Khairunnas.jpeg',
-      },
-      id: '2',
-    },
-
-    {
-      go: 'Barang',
-      image: {
-        uri: 'https://www.pesantrenkhairunnas.sch.id/wp-content/uploads/2020/08/TK-Islam-Khairunnas.jpeg',
-      },
-      id: '17',
+      image: require('../../assets/dua.png'),
     },
     {
-      go: 'Barang2',
-      image: {
-        uri: 'https://www.pesantrenkhairunnas.sch.id/wp-content/uploads/2020/08/SMP-Khairunnas.jpeg',
-      },
-      id: '18',
+      image: require('../../assets/tiga.png'),
     },
   ]);
 
   const renderCarouselItem = ({item}) => (
     <TouchableOpacity
       onPress={() => navigation.navigate(item.go, item)}
-      style={styles.cardContainer}
+      style={{
+        backgroundColor: colors.black,
+        opacity: 1,
+        height: 200,
+        width: 300,
+        borderRadius: 10,
+        overflow: 'hidden',
+      }}
       key={item.id}>
       <Image
         source={item.image}
-        style={{widht: 200, height: 130, resizeMode: 'cover'}}
+        style={{
+          height: 200,
+        }}
+        resizeMode="cover"
       />
     </TouchableOpacity>
   );
@@ -116,14 +106,7 @@ const styles = StyleSheet.create({
     bottom: 0,
     marginBottom: 30,
   },
-  cardContainer: {
-    backgroundColor: colors.black,
-    opacity: 1,
-    height: 130,
-    width: 300,
-    borderRadius: 10,
-    overflow: 'hidden',
-  },
+  cardContainer: {},
   cardImage: {
     height: 50,
     width: 300,

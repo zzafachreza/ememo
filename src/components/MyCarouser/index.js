@@ -27,19 +27,7 @@ export default function MyCarouser() {
 
   const [data, setData] = useState([
     {
-      image: {
-        uri: 'https://static.bmdstatic.com/st/home/e0b7d3-small-banner_600x300.jpg',
-      },
-    },
-    {
-      image: {
-        uri: 'https://static.bmdstatic.com/st/home/b518d3-small-banner_600x300.jpg',
-      },
-    },
-    {
-      image: {
-        uri: 'https://static.bmdstatic.com/st/home/e74876-small-banner_600x300.jpg',
-      },
+      image: require('../../assets/slide.jpeg'),
     },
   ]);
 
@@ -77,7 +65,7 @@ export default function MyCarouser() {
           // resizeMode="contain"
           source={item.image}
           style={{
-            height: Math.round((windowWidth * 9) / 18),
+            height: Math.round((windowWidth * 9) / 20),
           }}
         />
       </TouchableNativeFeedback>
