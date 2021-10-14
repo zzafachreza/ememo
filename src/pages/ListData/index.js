@@ -15,8 +15,9 @@ import {getData} from '../../utils/localStorage';
 import PushNotification from 'react-native-push-notification';
 import messaging from '@react-native-firebase/messaging';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import {MyButton} from '../../components';
+import {MyButton, MyGap} from '../../components';
 import {useIsFocused} from '@react-navigation/native';
+import {Icon} from 'react-native-elements/dist/icons/Icon';
 
 export default function ListData({navigation}) {
   const isFocused = useIsFocused();
@@ -55,7 +56,7 @@ export default function ListData({navigation}) {
             id_member: res.id,
           })
           .then(res => {
-            console.log(res.data);
+            console.log('data_surat', res.data);
             setData(res.data);
           });
       });
@@ -76,9 +77,8 @@ export default function ListData({navigation}) {
           return (
             <View
               style={{
-                margin: 5,
-                borderTopRightRadius: 10,
-                borderTopLeftRadius: 10,
+                marginBottom: 10,
+
                 borderColor: colors.primary,
                 borderWidth: 1,
                 backgroundColor: colors.white,
@@ -87,40 +87,77 @@ export default function ListData({navigation}) {
                 onPress={() => {
                   console.log('cek detail', item);
                   navigation.navigate('ListDetail', item);
-                }}
-                style={{
-                  flexDirection: 'row',
                 }}>
-                <View style={{flex: 1, padding: 10}}>
-                  <Text
-                    style={{
-                      fontFamily: fonts.secondary[400],
-                      fontSize: 12,
-                    }}>
-                    Nomor - Perihal :
-                  </Text>
-                  <Text
-                    style={{
-                      fontFamily: fonts.secondary[600],
-                      fontSize: 20,
-                    }}>
-                    {item.nomor}
-                  </Text>
-                  <Text
-                    style={{
-                      fontFamily: fonts.secondary[600],
-                      fontSize: 16,
-                      color: colors.primary,
-                    }}>
-                    {item.pembuat_nama}
-                  </Text>
-                  <Text
-                    style={{
-                      fontFamily: fonts.secondary[400],
-                    }}>
-                    {item.tanggal}
-                  </Text>
+                <View style={{flex: 1, padding: 10, flexDirection: 'row'}}>
+                  <View>
+                    <Text
+                      style={{
+                        fontFamily: fonts.secondary[600],
+                        fontSize: 12,
+                      }}>
+                      Kategori
+                    </Text>
+                    <Text
+                      style={{
+                        fontFamily: fonts.secondary[400],
+                        fontSize: 12,
+                      }}>
+                      {item.kategori}
+                    </Text>
+                    <Text
+                      style={{
+                        fontFamily: fonts.secondary[600],
+                        fontSize: 12,
+                      }}>
+                      Tanggal
+                    </Text>
+                    <Text
+                      style={{
+                        fontFamily: fonts.secondary[400],
+                        fontSize: 12,
+                      }}>
+                      {item.tanggal}
+                    </Text>
+                    <Text
+                      style={{
+                        fontFamily: fonts.secondary[400],
+                        fontSize: 12,
+                      }}>
+                      {item.waktu}
+                    </Text>
+                  </View>
+                  <View style={{paddingHorizontal: 20}}>
+                    <Text
+                      style={{
+                        fontFamily: fonts.secondary[600],
+                        fontSize: 12,
+                      }}>
+                      Nomor
+                    </Text>
+                    <Text
+                      style={{
+                        fontFamily: fonts.secondary[400],
+                        fontSize: 12,
+                      }}>
+                      {item.nomor}
+                    </Text>
+                    <Text
+                      style={{
+                        fontFamily: fonts.secondary[600],
+                        fontSize: 12,
+                      }}>
+                      Perihal
+                    </Text>
+                    <Text
+                      style={{
+                        fontFamily: fonts.secondary[400],
+                        fontSize: 12,
+                      }}>
+                      {item.perihal}
+                    </Text>
+                  </View>
                 </View>
+
                 <View
                   style={{
                     justifyContent: 'center',
@@ -131,18 +168,135 @@ export default function ListData({navigation}) {
                       // borderBottomRightRadius: 10,
                       // backgroundColor: colors.border,
                       fontFamily: fonts.secondary[600],
-                      fontSize: 25,
+                      fontSize: 16,
                       color: colors.black,
                       padding: 10,
                     }}>
                     Rp. {item.total}
                   </Text>
                 </View>
+                {/*  */}
+                <View
+                  style={{
+                    padding: 10,
+                    flexDirection: 'row',
+                    justifyContent: 'space-around',
+                  }}>
+                  <View>
+                    <Text
+                      style={{
+                        fontFamily: fonts.secondary[600],
+                        fontSize: 12,
+                      }}>
+                      Pembuat
+                    </Text>
+                    <Text
+                      style={{
+                        fontFamily: fonts.secondary[400],
+                        fontSize: 12,
+                      }}>
+                      {item.pembuat_nama}
+                    </Text>
+                  </View>
+                  <View>
+                    <Text
+                      style={{
+                        fontFamily: fonts.secondary[600],
+                        fontSize: 12,
+                      }}>
+                      Penyetuju 1
+                    </Text>
+                    <Text
+                      style={{
+                        fontFamily: fonts.secondary[400],
+                        fontSize: 12,
+                      }}>
+                      {item.satu_pemeriksa}
+                    </Text>
+
+                    {item.satu_status == 'SETUJU' && (
+                      <View>
+                        <Icon
+                          type="ionicon"
+                          name="checkmark-circle"
+                          color={colors.success}
+                        />
+                      </View>
+                    )}
+
+                    {item.satu_status == 'TIDAK SETUJU' && (
+                      <View>
+                        <Icon
+                          type="ionicon"
+                          name="close-circle"
+                          color={colors.danger}
+                        />
+                      </View>
+                    )}
+
+                    {item.satu_status == '' && (
+                      <View>
+                        <Icon
+                          type="ionicon"
+                          name="document"
+                          color={colors.primary}
+                        />
+                      </View>
+                    )}
+                  </View>
+                  <View>
+                    <Text
+                      style={{
+                        fontFamily: fonts.secondary[600],
+                        fontSize: 12,
+                      }}>
+                      Penyetuju 2
+                    </Text>
+                    <Text
+                      style={{
+                        fontFamily: fonts.secondary[400],
+                        fontSize: 12,
+                      }}>
+                      {item.dua_pemeriksa}
+                    </Text>
+
+                    {item.satu_status == 'SETUJU' && (
+                      <View>
+                        <Icon
+                          type="ionicon"
+                          name="checkmark-circle"
+                          color={colors.success}
+                        />
+                      </View>
+                    )}
+
+                    {item.satu_status == 'TIDAK SETUJU' && (
+                      <View>
+                        <Icon
+                          type="ionicon"
+                          name="close-circle"
+                          color={colors.danger}
+                        />
+                      </View>
+                    )}
+
+                    {item.satu_status == '' && (
+                      <View>
+                        <Icon
+                          type="ionicon"
+                          name="document"
+                          color={colors.primary}
+                        />
+                      </View>
+                    )}
+                  </View>
+                </View>
               </TouchableOpacity>
             </View>
           );
         })}
       </ScrollView>
+      <MyGap jarak={10} />
     </SafeAreaView>
   );
 }

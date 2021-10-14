@@ -19,7 +19,10 @@ export default function Artikel({navigation, route}) {
   const user = route.params;
 
   const myUrl =
-    `https://zavalabs.com/ememo/api/form_pembuat.php?nama=` + user.nama_lengkap;
+    `https://zavalabs.com/ememo/api/form_pembuat.php?nama=` +
+    user.nama_lengkap +
+    '&alamat=' +
+    user.alamat;
 
   console.log(myUrl);
   return (

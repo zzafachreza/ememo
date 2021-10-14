@@ -8,6 +8,7 @@ import {
   ImageBackground,
   Image,
   TouchableOpacity,
+  Linking,
 } from 'react-native';
 import axios from 'axios';
 import {fonts, windowWidth, windowHeight} from '../../utils/fonts';
@@ -168,6 +169,92 @@ export default function ListDetail({navigation, route}) {
           flex: 1,
           backgroundColor: colors.white,
         }}>
+        <View
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'center',
+            backgroundColor: colors.primary,
+          }}>
+          <TouchableOpacity
+            onPress={() =>
+              Linking.openURL(
+                'https://api.whatsapp.com/send?phone=' +
+                  item.hp_satu +
+                  '&text=Cek%20dan%20Tanda%20Tangan%20disni%3A%0Ahttps%3A%2F%2Fzavalabs.com%2Fememo%2Fapi%2Fform_setuju.php?/' +
+                  item.id,
+              )
+            }
+            style={{
+              flex: 1,
+              padding: 20,
+              backgroundColor: colors.black,
+              flexDirection: 'row',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <Icon type="ionicon" name="logo-whatsapp" color={colors.white} />
+            <View>
+              <Text
+                style={{
+                  fontFamily: fonts.secondary[600],
+                  fontSize: windowWidth / 30,
+                  color: colors.white,
+                  left: 10,
+                }}>
+                Share Penyetuju 1
+              </Text>
+              <Text
+                style={{
+                  fontFamily: fonts.secondary[600],
+                  fontSize: windowWidth / 30,
+                  color: colors.white,
+                  left: 10,
+                }}>
+                {item.satu_pemeriksa}
+              </Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() =>
+              Linking.openURL(
+                'https://api.whatsapp.com/send?phone=' +
+                  item.hp_dua +
+                  '&text=Cek%20dan%20Tanda%20Tangan%20disni%3A%0Ahttps%3A%2F%2Fzavalabs.com%2Fememo%2Fapi%2Fform_pimpinan.php?/' +
+                  item.id,
+              )
+            }
+            style={{
+              flex: 1,
+              padding: 20,
+              backgroundColor: colors.success,
+              flexDirection: 'row',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <Icon type="ionicon" name="logo-whatsapp" color={colors.white} />
+            <View>
+              <Text
+                style={{
+                  fontFamily: fonts.secondary[600],
+                  fontSize: windowWidth / 30,
+                  color: colors.white,
+                  left: 10,
+                }}>
+                Share Penyetuju 2
+              </Text>
+              <Text
+                style={{
+                  fontFamily: fonts.secondary[600],
+                  fontSize: windowWidth / 30,
+                  color: colors.white,
+                  left: 10,
+                }}>
+                {item.dua_pemeriksa}
+              </Text>
+            </View>
+          </TouchableOpacity>
+        </View>
         <View style={{padding: 10, flex: 1}}>
           <DataPesanan />
 
@@ -194,56 +281,28 @@ export default function ListDetail({navigation, route}) {
           </ScrollView>
         </View>
       </SafeAreaView>
-      <View
+
+      <TouchableOpacity
+        onPress={() => navigation.navigate('Ttd', item)}
         style={{
+          marginTop: 20,
+          padding: 15,
+          backgroundColor: colors.danger,
           flexDirection: 'row',
-          alignItems: 'center',
           justifyContent: 'center',
-          backgroundColor: colors.primary,
+          alignItems: 'center',
         }}>
-        <TouchableOpacity
-          onPress={() => navigation.navigate('Ttd', item)}
+        <Icon type="ionicon" name="eye" color={colors.white} />
+        <Text
           style={{
-            padding: 20,
-            flex: 2,
-            backgroundColor: colors.danger,
-            flexDirection: 'row',
-            justifyContent: 'center',
-            alignItems: 'center',
+            fontFamily: fonts.secondary[600],
+            fontSize: windowWidth / 25,
+            color: colors.white,
+            left: 10,
           }}>
-          <Icon type="ionicon" name="create-outline" color={colors.white} />
-          <Text
-            style={{
-              fontFamily: fonts.secondary[600],
-              fontSize: windowWidth / 25,
-              color: colors.white,
-              left: 10,
-            }}>
-            Tanda Tangan
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => navigation.navigate('Ttd', item)}
-          style={{
-            flex: 1,
-            padding: 20,
-            backgroundColor: colors.success,
-            flexDirection: 'row',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}>
-          <Icon type="ionicon" name="logo-whatsapp" color={colors.white} />
-          <Text
-            style={{
-              fontFamily: fonts.secondary[600],
-              fontSize: windowWidth / 25,
-              color: colors.white,
-              left: 10,
-            }}>
-            Whatsapp
-          </Text>
-        </TouchableOpacity>
-      </View>
+          Lihat Format PDF
+        </Text>
+      </TouchableOpacity>
     </>
   );
 }

@@ -32,7 +32,7 @@ export default function Register({navigation}) {
     setLoading(true);
     console.log(data);
     axios
-      .post('https://zavalabs.com/bigetronesports/api/register.php', data)
+      .post('https://zavalabs.com/ememo/api/register.php', data)
       .then(res => {
         console.log(res);
         let err = res.data.split('#');
@@ -109,7 +109,7 @@ export default function Register({navigation}) {
         />
         <MyGap jarak={10} />
         <MyInput
-          label="Alamat"
+          label="Jabatan"
           iconname="map"
           value={data.alamat}
           onChangeText={value =>

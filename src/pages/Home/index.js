@@ -58,7 +58,7 @@ export default function Home({navigation}) {
           backgroundColor: colors.white,
           padding: 6,
           borderRadius: 20,
-          width: windowWidth / 5,
+          width: windowWidth / 2.5,
           height: 80,
           elevation: 5,
         }}>
@@ -225,7 +225,7 @@ export default function Home({navigation}) {
               icon="mail"
               nama="Pembuat Surat"
             />
-            <DataKategori
+            {/* <DataKategori
               onPress={() => navigation.navigate('Info')}
               icon="mail-open"
               nama="Mengetahui"
@@ -234,7 +234,7 @@ export default function Home({navigation}) {
               onPress={() => navigation.navigate('Tahsin')}
               icon="checkmark-circle"
               nama="Menyetujui"
-            />
+            /> */}
             <DataKategori
               onPress={() => navigation.navigate('ListData')}
               icon="folder"

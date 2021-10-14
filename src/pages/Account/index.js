@@ -130,7 +130,7 @@ export default function Account({navigation}) {
               style={{
                 fontFamily: fonts.secondary[600],
               }}>
-              Alamat
+              Jabatan
             </Text>
             <Text
               style={{

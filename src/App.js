@@ -14,8 +14,8 @@ export default function App() {
 
   PushNotification.createChannel(
     {
-      channelId: 'bigetronesprots', // (required)
-      channelName: 'bigetronesprots', // (required)
+      channelId: 'zvl-ememo', // (required)
+      channelName: 'zvl-ememo', // (required)
       channelDescription: 'A channel to categorise your notifications', // (optional) default: undefined.
       playSound: true, // (optional) default: true
       soundName: 'default', // (optional) See `soundName` parameter of `localNotification` function
