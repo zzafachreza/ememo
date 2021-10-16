@@ -25,21 +25,15 @@ export default function ListData({navigation}) {
   const [user, setUser] = useState({});
 
   messaging().onMessage(async remoteMessage => {
-    // Alert.alert('A new FCM message arrived!', JSON.stringify(remoteMessage));
     const json = JSON.stringify(remoteMessage);
     const obj = JSON.parse(json);
-    // alert(obj.notification);
-    // console.log('list transaksi', obj.notification);
     getData('user').then(res => {
       setUser(res);
-      // console.log(res);
-
       axios
         .post('https://zavalabs.com/ememo/api/transaksi.php', {
           id_member: res.id,
         })
         .then(res => {
-          // console.log(res.data);
           setData(res.data);
         });
     });
@@ -49,7 +43,6 @@ export default function ListData({navigation}) {
     if (isFocused) {
       getData('user').then(res => {
         setUser(res);
-        // console.log(res);
 
         axios
           .post('https://zavalabs.com/ememo/api/transaksi.php', {

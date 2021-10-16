@@ -7,6 +7,9 @@
    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
    <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" />
    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+   <uses-permission android:name="android.permission.ACCESS_MEDIA_LOCATION" />
+
+
     <application
       android:name=".MainApplication"
       android:label="@string/app_name"
@@ -16,6 +19,8 @@
       android:allowBackup="false"
       android:theme="@style/AppTheme">
        <!-- notifikasi -->
+
+       
 
 
          <!-- Change the value to true to enable pop-up for in foreground on receiving remote notifications (for prevent duplicating while showing local notifications set this to false) -->
@@ -35,6 +40,13 @@
             </intent-filter>
         </receiver>
 
+        
+
+
+      
+ 
+
+
 
       <activity
         android:name=".MainActivity"
@@ -46,6 +58,16 @@
             <action android:name="android.intent.action.MAIN" />
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
+        
+        
       </activity>
     </application>
+
+      <queries>
+            <intent>
+                <action android:name="android.intent.action.VIEW" />
+                <data android:mimeType="*/*" />
+            </intent>
+        </queries>
+
 </manifest>

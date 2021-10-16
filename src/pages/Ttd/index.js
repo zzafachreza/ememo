@@ -32,7 +32,7 @@ export default function ListView({route}) {
       const granted = await PermissionsAndroid.request(
         PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
         {
-          title: 'Go - Benk',
+          title: 'E-Memo',
           message: 'Izinikan Aplikasi Untuk Menyimpan Data',
           buttonNeutral: 'Ask Me Later',
           buttonNegative: 'Cancel',
@@ -41,7 +41,7 @@ export default function ListView({route}) {
       );
       if (granted === PermissionsAndroid.RESULTS.GRANTED) {
         axios.post(myUrl2).then(res => {
-          console.log(res.data);
+          // console.log(res.data);
           createPDF('DOWNLOAD', res.data);
         });
       } else {
@@ -55,23 +55,21 @@ export default function ListView({route}) {
   const createPDF = async (nama_file, html) => {
     let options = {
       html: html,
-      fileName: 'E_MEMO_' + nama_file,
-      directory: '',
+      fileName: 'E_MEMO',
+      directory: 'Documents',
     };
 
     let file = await RNHTMLtoPDF.convert(options);
     console.log(file.filePath);
-    // alert(file.filePath);
 
-    // const path = // absolute-path-to-my-local-file.
-    FileViewer.open(file.filePath, {showOpenWithDialog: true})
+    const path = FileViewer.open(file.filePath, {showOpenWithDialog: false}) // absolute-path-to-my-local-file.
       .then(() => {
         // success
         PushNotification.localNotification({
           /* Android Only Properties */
           channelId: 'zvl-ememo', // (required) channelId, if the channel doesn't exist, notification will not trigger.
-          title: 'Gobenk - Invoice', // (optional)
-          message: 'Download Selesai, ' + file.filePath, // (required)
+          title: 'E - memo - Surat Elektronik', // (optional)
+          message: 'Download Selesai', // (required)
         });
       })
       .catch(error => {
