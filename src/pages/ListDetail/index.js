@@ -148,6 +148,7 @@ export default function ListDetail({navigation, route}) {
               <Image
                 source={{uri: item.link}}
                 style={{
+                  resizeMode: 'contain',
                   width: '100%',
                   height: 300,
                 }}
@@ -169,6 +170,26 @@ export default function ListDetail({navigation, route}) {
           flex: 1,
           backgroundColor: colors.white,
         }}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('Ttd', item)}
+          style={{
+            padding: 15,
+            backgroundColor: colors.danger,
+            flexDirection: 'row',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+          <Icon type="ionicon" name="eye" color={colors.white} />
+          <Text
+            style={{
+              fontFamily: fonts.secondary[600],
+              fontSize: windowWidth / 25,
+              color: colors.white,
+              left: 10,
+            }}>
+            Lihat Format PDF
+          </Text>
+        </TouchableOpacity>
         <View
           style={{
             flexDirection: 'row',
@@ -176,86 +197,92 @@ export default function ListDetail({navigation, route}) {
             justifyContent: 'center',
             backgroundColor: colors.primary,
           }}>
-          <TouchableOpacity
-            onPress={() =>
-              Linking.openURL(
-                'https://api.whatsapp.com/send?phone=' +
-                  item.hp_satu +
-                  '&text=Cek%20dan%20Tanda%20Tangan%20disni%3A%0Ahttps%3A%2F%2Fzavalabs.com%2Fememo%2Fapi%2Fform_setuju.php?/' +
-                  item.id,
-              )
-            }
-            style={{
-              flex: 1,
-              padding: 20,
-              backgroundColor: colors.black,
-              flexDirection: 'row',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}>
-            <Icon type="ionicon" name="logo-whatsapp" color={colors.white} />
-            <View>
-              <Text
-                style={{
-                  fontFamily: fonts.secondary[600],
-                  fontSize: windowWidth / 30,
-                  color: colors.white,
-                  left: 10,
-                }}>
-                Share Penyetuju 1
-              </Text>
-              <Text
-                style={{
-                  fontFamily: fonts.secondary[600],
-                  fontSize: windowWidth / 30,
-                  color: colors.white,
-                  left: 10,
-                }}>
-                {item.satu_pemeriksa}
-              </Text>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() =>
-              Linking.openURL(
-                'https://api.whatsapp.com/send?phone=' +
-                  item.hp_dua +
-                  '&text=Cek%20dan%20Tanda%20Tangan%20disni%3A%0Ahttps%3A%2F%2Fzavalabs.com%2Fememo%2Fapi%2Fform_pimpinan.php?/' +
-                  item.id,
-              )
-            }
-            style={{
-              flex: 1,
-              padding: 20,
-              backgroundColor: colors.success,
-              flexDirection: 'row',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}>
-            <Icon type="ionicon" name="logo-whatsapp" color={colors.white} />
-            <View>
-              <Text
-                style={{
-                  fontFamily: fonts.secondary[600],
-                  fontSize: windowWidth / 30,
-                  color: colors.white,
-                  left: 10,
-                }}>
-                Share Penyetuju 2
-              </Text>
-              <Text
-                style={{
-                  fontFamily: fonts.secondary[600],
-                  fontSize: windowWidth / 30,
-                  color: colors.white,
-                  left: 10,
-                }}>
-                {item.dua_pemeriksa}
-              </Text>
-            </View>
-          </TouchableOpacity>
+          {item.satu_status == '' && (
+            <TouchableOpacity
+              onPress={() =>
+                Linking.openURL(
+                  'https://api.whatsapp.com/send?phone=' +
+                    item.hp_satu +
+                    '&text=Yth,%20Kami%20kirimkan%20e%20memo(%20Surat%20Elektronik),%20menunggu%20pemeriksaan%20/%20tanda%20tangan.%20Mohon%20Klik%20link%20ini%3A%0Ahttps%3A%2F%2Fzavalabs.com%2Fememo%2Fapi%2Fform_setuju.php?/' +
+                    item.id,
+                )
+              }
+              style={{
+                flex: 1,
+                padding: 20,
+                backgroundColor: colors.black,
+                flexDirection: 'row',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}>
+              <Icon type="ionicon" name="logo-whatsapp" color={colors.white} />
+              <View>
+                <Text
+                  style={{
+                    fontFamily: fonts.secondary[600],
+                    fontSize: windowWidth / 30,
+                    color: colors.white,
+                    left: 10,
+                  }}>
+                  Share Penyetuju 1
+                </Text>
+                <Text
+                  style={{
+                    fontFamily: fonts.secondary[600],
+                    fontSize: windowWidth / 30,
+                    color: colors.white,
+                    left: 10,
+                  }}>
+                  {item.satu_pemeriksa}
+                </Text>
+              </View>
+            </TouchableOpacity>
+          )}
+
+          {item.dua_status == '' && (
+            <TouchableOpacity
+              onPress={() =>
+                Linking.openURL(
+                  'https://api.whatsapp.com/send?phone=' +
+                    item.hp_dua +
+                    '&text=Yth,%20Kami%20kirimkan%20e%20memo(%20Surat%20Elektronik),%20menunggu%20pemeriksaan%20/%20tanda%20tangan.%20Mohon%20Klik%20link%20ini%3A%0Ahttps%3A%2F%2Fzavalabs.com%2Fememo%2Fapi%2Fform_pimpinan.php?/' +
+                    item.id,
+                )
+              }
+              style={{
+                flex: 1,
+                padding: 20,
+                backgroundColor: colors.success,
+                flexDirection: 'row',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}>
+              <Icon type="ionicon" name="logo-whatsapp" color={colors.white} />
+              <View>
+                <Text
+                  style={{
+                    fontFamily: fonts.secondary[600],
+                    fontSize: windowWidth / 30,
+                    color: colors.white,
+                    left: 10,
+                  }}>
+                  Share Penyetuju 2
+                </Text>
+                <Text
+                  style={{
+                    fontFamily: fonts.secondary[600],
+                    fontSize: windowWidth / 30,
+                    color: colors.white,
+                    left: 10,
+                  }}>
+                  {item.dua_pemeriksa}
+                </Text>
+              </View>
+            </TouchableOpacity>
+          )}
         </View>
-        <View style={{padding: 10, flex: 1}}>
+
+        <ScrollView style={{padding: 10, flex: 1}}>
           <DataPesanan />
 
           <Text
@@ -267,42 +294,19 @@ export default function ListDetail({navigation, route}) {
             }}>
             Isi Surat
           </Text>
-          <ScrollView
-            style={{
-              padding: 10,
-            }}>
+          <View style={{paddingBottom: 10}}>
             <Text
               style={{
+                margin: 10,
                 fontFamily: fonts.secondary[400],
                 color: colors.black,
+                textAlign: 'justify',
               }}>
               {item.isi}
             </Text>
-          </ScrollView>
-        </View>
+          </View>
+        </ScrollView>
       </SafeAreaView>
-
-      <TouchableOpacity
-        onPress={() => navigation.navigate('Ttd', item)}
-        style={{
-          marginTop: 20,
-          padding: 15,
-          backgroundColor: colors.danger,
-          flexDirection: 'row',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}>
-        <Icon type="ionicon" name="eye" color={colors.white} />
-        <Text
-          style={{
-            fontFamily: fonts.secondary[600],
-            fontSize: windowWidth / 25,
-            color: colors.white,
-            left: 10,
-          }}>
-          Lihat Format PDF
-        </Text>
-      </TouchableOpacity>
     </>
   );
 }

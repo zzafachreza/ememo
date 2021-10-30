@@ -31,7 +31,7 @@ export default function ListData({navigation}) {
       setUser(res);
       axios
         .post('https://zavalabs.com/ememo/api/transaksi.php', {
-          id_member: res.id,
+          id_member: res.nama_lengkap,
         })
         .then(res => {
           setData(res.data);
@@ -46,7 +46,7 @@ export default function ListData({navigation}) {
 
         axios
           .post('https://zavalabs.com/ememo/api/transaksi.php', {
-            id_member: res.id,
+            id_member: res.nama_lengkap,
           })
           .then(res => {
             console.log('data_surat', res.data);
@@ -253,7 +253,7 @@ export default function ListData({navigation}) {
                       {item.dua_pemeriksa}
                     </Text>
 
-                    {item.satu_status == 'SETUJU' && (
+                    {item.dua_status == 'SETUJU' && (
                       <View>
                         <Icon
                           type="ionicon"
@@ -263,7 +263,7 @@ export default function ListData({navigation}) {
                       </View>
                     )}
 
-                    {item.satu_status == 'TIDAK SETUJU' && (
+                    {item.dua_status == 'TIDAK SETUJU' && (
                       <View>
                         <Icon
                           type="ionicon"
@@ -273,7 +273,7 @@ export default function ListData({navigation}) {
                       </View>
                     )}
 
-                    {item.satu_status == '' && (
+                    {item.dua_status == '' && (
                       <View>
                         <Icon
                           type="ionicon"
